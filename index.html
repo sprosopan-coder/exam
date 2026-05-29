@@ -928,7 +928,7 @@ function showResults() {
 
   let heading = pct >= 80 ? '🎉 Excellent Work!' : pct >= 65 ? '👍 Good Progress!' : '📚 Keep Studying!';
   let sub = pct >= 80
-    ? 'You're ready for the CLF-C02 exam! Keep it up.'
+    ? 'You\u2019re ready for the CLF-C02 exam! Keep it up.'
     : pct >= 65
     ? 'Getting there! Review the wrong answers below.'
     : 'Focus on the topics you missed and try again.';
@@ -977,7 +977,7 @@ function shareQuiz() {
   const url = window.location.href;
   if (navigator.clipboard) {
     navigator.clipboard.writeText(url).then(() => {
-      const btn = event.target;
+      const btn = document.querySelector('.btn-share');
       btn.textContent = '✓ Copied!';
       setTimeout(() => btn.textContent = 'Copy Link', 2000);
     });
