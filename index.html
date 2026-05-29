@@ -765,6 +765,15 @@ let answers = {};  // idx -> {selected:[], correct:bool, skipped:bool}
 let correctCount = 0;
 let wrongCount = 0;
 
+function shuffleArray(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 function selectMode(m) {
   mode = m;
   document.querySelectorAll('.mode-card').forEach(c => c.classList.remove('selected'));
@@ -817,7 +826,8 @@ function renderQuestion() {
   const list = document.getElementById('options-list');
   list.innerHTML = '';
 
-  q.options.forEach(opt => {
+  const shuffledOptions = shuffleArray(q.options);
+  shuffledOptions.forEach(opt => {
     const btn = document.createElement('button');
     btn.className = 'option-btn';
     btn.dataset.key = opt.key;
